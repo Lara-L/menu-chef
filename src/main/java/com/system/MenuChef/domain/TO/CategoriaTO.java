@@ -20,5 +20,5 @@ public class CategoriaTO {
   @NotEmpty
   @Size(min = 2, message = "{validation.name.size.too_short}")
   @Size(max = 40, message = "{validation.name.size.too_long}")
-  private String categoryName;
+  private String name;
 }

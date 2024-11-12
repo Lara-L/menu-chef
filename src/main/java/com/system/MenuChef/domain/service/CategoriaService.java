@@ -29,17 +29,17 @@ public class CategoriaService {
     }
     return category.get();
   }
-  public Optional<Categoria> findCategoryByName(String name) {
-    return categoriaRepository.findCategoryByName(upperAndSnakeCase(name));
-  }
+//  public Optional<Categoria> findCategoriaByName(String categoryName) throws DomainException {
+//    return categoriaRepository.findCategoriaByName(upperAndSnakeCase(categoryName));
+//  }
 
   public Categoria createCategory(CategoriaTO categoriaTO) throws DomainException {
-    Optional<Categoria> categoryDB = categoriaRepository.findCategoryByName(upperAndSnakeCase(categoriaTO.getCategoryName()));
+    Optional<Categoria> categoryDB = categoriaRepository.findCategoriaByName(upperAndSnakeCase(categoriaTO.getName()));
     if (categoryDB.isPresent()) {
       throw new DomainException(ErrorCode.CATEGORY_EXISTENT);
     }
     Categoria categoria = Categoria.builder()
-        .categoryName(upperAndSnakeCase(categoriaTO.getCategoryName()))
+        .name(upperAndSnakeCase(categoriaTO.getName()))
         .build();
 
     return categoriaRepository.save(categoria);
@@ -47,13 +47,13 @@ public class CategoriaService {
 
   public Categoria updateCategory(CategoriaTO categoriaTO, UUID id) throws DomainException {
     Optional<Categoria> category = categoriaRepository.findById(id);
-    if (!upperAndSnakeCase(categoriaTO.getCategoryName()).equals(category.get().getCategoryName())) {
-      Optional<Categoria> categoryDB =categoriaRepository.findCategoryByName(upperAndSnakeCase(categoriaTO.getCategoryName()));
-
+    if (!upperAndSnakeCase(categoriaTO.getName()).equals(category.get().getName())) {
+      Optional<Categoria> categoryDB =categoriaRepository.findCategoriaByName(upperAndSnakeCase(categoriaTO.getName()));
+  //adicionar um is present
       if (categoryDB.isPresent()) {
         throw new DomainException(ErrorCode.CATEGORY_EXISTENT);
       }
-      category.get().setCategoryName(upperAndSnakeCase(categoriaTO.getCategoryName()));
+      category.get().setName(upperAndSnakeCase(categoriaTO.getName()));
     }
 
     return categoriaRepository.save(category.get());
