@@ -1,0 +1,17 @@
+version: '3.5'
+
+services:
+  menuchef-db:
+    image: postgres:latest
+    container_name: menuchef-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: menuchef
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "5331:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:
