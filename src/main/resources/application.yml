@@ -1,0 +1,31 @@
+
+server:
+  port: 8033
+  servlet:
+    context-path: /api
+
+spring:
+  security:
+    user:
+      name: user
+  application:
+    name: MenuChef
+  datasource:
+    url: jdbc:postgresql://localhost:5331/menuchef
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    properties:
+      hibernate:
+        ddl-auto: update
+        show_sql: true
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    operations-sorter: method
