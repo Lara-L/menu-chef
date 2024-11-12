@@ -1,8 +1,9 @@
 package com.system.MenuChef.domain.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -10,7 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
+
 @Builder
 @Getter
 @Setter
@@ -18,8 +19,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @Table(name = "categories")
 @EqualsAndHashCode(callSuper = true)
+@Entity
 public class Categoria extends Base {
 
-  @Column(unique = true)
-  private String categoryName;
+  @Column
+  private String name;
 }
